@@ -1,13 +1,18 @@
 <template>
   <div id="app">
+    <local-time></local-time>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import LocalTime from './components/LocalTime.vue';
 
 export default Vue.extend({
   name: 'app',
+  components: {
+    LocalTime,
+  },
 });
 </script>
 
