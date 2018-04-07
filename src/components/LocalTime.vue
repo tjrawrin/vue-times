@@ -1,61 +1,52 @@
 <template>
-  <div>
-    <h2>{{ currentTimezone }}</h2>
-    <span>{{ currentDate }}</span>
-    <span>{{ currentTime }}</span>
+  <div class="LocalTime">
+    <please-wait v-if="this.$store.state.local.loading"></please-wait>
+    <template v-else>
+      <div class="LocalTime-zone">{{ this.$store.state.local.zone }}</div>
+      <div class="LocalTime-date">{{ this.$store.state.local.date }}</div>
+      <div class="LocalTime-time">{{ this.$store.state.local.time }}</div>
+    </template>
   </div>
 </template>
 
-<script>
-import { DateTime } from 'luxon';
+<script lang="ts">
+import Vue from 'vue';
+import PleaseWait from './PleaseWait.vue';
 
-export default {
+export default Vue.extend({
   name: 'local-time',
-  data() {
-    return {
-      currentDateTime: null,
-    };
+  components: {
+    PleaseWait,
   },
-  created() {
-    setInterval(() => this.updateCurrentDateTime(), 1000);
+  beforeCreate() {
+    setInterval(() => {
+      this.$store.dispatch('updateLocal');
+    }, 1000 * 1);
   },
-  beforeMount() {
-    this.updateCurrentDateTime();
-  },
-  methods: {
-    updateCurrentDateTime() {
-      this.currentDateTime = DateTime.local();
-    },
-  },
-  computed: {
-    currentTimezone() {
-      return this.currentDateTime.zoneName;
-    },
-    currentDate() {
-      return this.currentDateTime.toLocaleString(DateTime.DATE_HUGE);
-    },
-    currentTime() {
-      return this.currentDateTime.toLocaleString(DateTime.TIME_WITH_SECONDS);
-    },
-  },
-};
+});
 </script>
 
-<style scoped>
-div {
-  background-color: #ffffff50;
+<style>
+.LocalTime {
+  align-items: center;
+  background-color: #ffffff30;
+  border: 1px solid #00000035;
   border-radius: 0.5rem;
-  padding: 1.6rem;
+  box-shadow: 0 1px 3px #00000025;
+  display: flex;
+  flex-direction: column;
+  grid-column: 2 / 2;
+  grid-row: 2 / 2;
+  justify-content: center;
+  padding: 0.8rem;
 }
-h2 {
-  border-bottom: 1px solid #00000025;
-  margin: 0;
-  text-align: center;
-  text-transform: uppercase;
+.LocalTime-zone {
+  border-bottom: 1px dotted #00000035;
 }
-span {
-  display: block;
-  font-size: 2.4rem;
+.LocalTime-zone,
+.LocalTime-date,
+.LocalTime-time {
   text-align: center;
+  width: 100%;
 }
 </style>

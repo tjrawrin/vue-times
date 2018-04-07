@@ -39,4 +39,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+#app {
+  display: grid;
+  grid-gap: 1.6rem;
+  grid-template-columns: 1fr 25.6rem 25.6rem 1fr;
+  grid-template-rows: 1fr 12.8rem 1fr;
+}
 </style>
