@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <time-format></time-format>
     <local-time></local-time>
   </div>
 </template>
@@ -7,11 +8,13 @@
 <script lang="ts">
 import Vue from 'vue';
 import LocalTime from './components/LocalTime.vue';
+import TimeFormat from './components/TimeFormat.vue';
 
 export default Vue.extend({
   name: 'app',
   components: {
     LocalTime,
+    TimeFormat,
   },
 });
 </script>
