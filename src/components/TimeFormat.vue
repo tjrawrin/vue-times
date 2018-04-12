@@ -1,22 +1,26 @@
 <template>
   <div class="TimeFormat">
-    <input 
-      class="TimeFormat-input"
-      type="radio" 
-      name="format"
-      id="12hr"
-      :checked="format === '12hr'"
-      @change="updateFormat('12hr')">
-    <label class="TimeFormat-label" for="12hr">12hr</label>
-    <input
-      class="TimeFormat-input"
-      type="radio"
-      name="format"
-      id="24hr"
-      value="24hr"
-      :checked="format === '24hr'"
-      @change="updateFormat('24hr')">
-    <label class="TimeFormat-label" for="24hr">24hr</label>
+    <div>
+      <input 
+        class="TimeFormat-input"
+        type="radio" 
+        name="format"
+        id="12hr"
+        :checked="format === '12hr'"
+        @change="updateFormat('12hr')">
+      <label class="TimeFormat-label" for="12hr">12hr</label>
+    </div>
+    <div>
+      <input
+        class="TimeFormat-input"
+        type="radio"
+        name="format"
+        id="24hr"
+        value="24hr"
+        :checked="format === '24hr'"
+        @change="updateFormat('24hr')">
+      <label class="TimeFormat-label" for="24hr">24hr</label>
+    </div>
   </div>
 </template>
 
@@ -38,8 +42,9 @@ export default Vue.extend({
 
 <style>
 .TimeFormat {
+  display: flex;
   grid-column: 2 / span 2;
-  justify-self: center;
+  justify-content: space-around;
 }
 .TimeFormat-input {
   position: absolute !important;
