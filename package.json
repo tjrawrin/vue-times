@@ -10,8 +10,7 @@
   "dependencies": {
     "luxon": "^1.0.0",
     "register-service-worker": "^1.0.0",
-    "vue": "^2.5.13",
-    "vuex": "^3.0.1"
+    "vue": "^2.5.13"
   },
   "devDependencies": {
     "@types/luxon": "^0.5.1",
