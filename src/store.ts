@@ -7,14 +7,15 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     format: '12hr',
+    interval: 0,
     local: {
       date: '',
       loading: true,
       time: '',
       zone: '',
     },
+    startTime: Date.now(),
   },
-  getters: {},
   actions: {
     updateFormat({ commit }, format) {
       commit('UPDATE_FORMAT', format);

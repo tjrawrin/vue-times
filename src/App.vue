@@ -1,12 +1,14 @@
 <template>
   <div id="app">
-    <time-format></time-format>
-    <local-time></local-time>
+    <time-format :format="format" @update="updateFormat"></time-format>
+    <local-time :dateTime="dt" :format="format"></local-time>
   </div>
 </template>
 
 <script lang="ts">
+import Worker from 'worker-loader!./worker';
 import Vue from 'vue';
+import { DateTime } from 'luxon';
 import LocalTime from './components/LocalTime.vue';
 import TimeFormat from './components/TimeFormat.vue';
 
@@ -15,6 +17,24 @@ export default Vue.extend({
   components: {
     LocalTime,
     TimeFormat,
+  },
+  data() {
+    return {
+      dt: null as any,
+      format: '12hr',
+    };
+  },
+  mounted() {
+    const worker = new Worker();
+    worker.postMessage('start');
+    worker.onmessage = (event: any) => {
+      this.dt = DateTime.fromMillis(event.data.time);
+    };
+  },
+  methods: {
+    updateFormat(newFormat: string) {
+      this.format = newFormat;
+    },
   },
 });
 </script>
@@ -47,5 +67,6 @@ body {
   grid-gap: 1.6rem;
   grid-template-columns: 1fr 25.6rem 25.6rem 1fr;
   grid-template-rows: 1fr 12.8rem 1fr;
+  margin: 1.6rem;
 }
 </style>

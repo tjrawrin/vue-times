@@ -1,16 +1,17 @@
 <template>
   <div class="LocalTime">
-    <please-wait v-if="this.$store.state.local.loading"></please-wait>
+    <please-wait v-if="this.dateTime === null"></please-wait>
     <template v-else>
-      <div class="LocalTime-zone">{{ this.$store.state.local.zone }}</div>
-      <div class="LocalTime-date">{{ this.$store.state.local.date }}</div>
-      <div class="LocalTime-time">{{ this.$store.state.local.time }}</div>
+      <div class="LocalTime-zone">{{ getZone }}</div>
+      <div class="LocalTime-date">{{ getDate }}</div>
+      <div class="LocalTime-time">{{ getTime }}</div>
     </template>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import { DateTime } from 'luxon';
 import PleaseWait from './PleaseWait.vue';
 
 export default Vue.extend({
@@ -18,10 +19,24 @@ export default Vue.extend({
   components: {
     PleaseWait,
   },
-  beforeCreate() {
-    setInterval(() => {
-      this.$store.dispatch('updateLocal');
-    }, 1000 * 1);
+  props: {
+    dateTime: DateTime,
+    format: String,
+  },
+  computed: {
+    getDate(): string {
+      return this.dateTime.toLocaleString(DateTime.DATE_HUGE);
+    },
+    getTime(): string {
+      if (this.format === '12hr') {
+        return this.dateTime.toLocaleString(DateTime.TIME_WITH_SECONDS);
+      } else {
+        return this.dateTime.toLocaleString(DateTime.TIME_24_WITH_SECONDS);
+      }
+    },
+    getZone(): string {
+      return this.dateTime.zoneName;
+    },
   },
 });
 </script>
