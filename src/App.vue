@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <time-format :timeFormat="timeFormat" @update="updateTimeFormat"></time-format>
     <time-card :dateTime="dateTime" :timeFormat="timeFormat"></time-card>
   </div>
 </template>
@@ -8,12 +9,15 @@
 import Worker from 'worker-loader!./worker';
 import Vue from 'vue';
 import { DateTime } from 'luxon';
+
 import TimeCard from './components/TimeCard.vue';
+import TimeFormat from './components/TimeFormat.vue';
 
 export default Vue.extend({
   name: 'app',
   components: {
     TimeCard,
+    TimeFormat,
   },
   data() {
     return {
