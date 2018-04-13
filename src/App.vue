@@ -2,13 +2,14 @@
   <div id="app">
     <time-format :timeFormat="timeFormat" @update="updateTimeFormat"></time-format>
     <time-card :dateTime="dateTime" :timeFormat="timeFormat"></time-card>
+    <time-card :dateTime="dateTime" :timeFormat="timeFormat" :zoneName="zoneName"></time-card>
   </div>
 </template>
 
 <script lang="ts">
 import Worker from 'worker-loader!./worker';
 import Vue from 'vue';
-import { DateTime } from 'luxon';
+import { DateTime, Zone } from 'luxon';
 
 import TimeCard from './components/TimeCard.vue';
 import TimeFormat from './components/TimeFormat.vue';
@@ -23,7 +24,7 @@ export default Vue.extend({
     return {
       dateTime: null as any,
       timeFormat: '12hr',
-      zoneName: DateTime.local().zoneName,
+      zoneName: DateTime.local().setZone('Brazil/West').zoneName,
     };
   },
   mounted() {

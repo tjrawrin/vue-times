@@ -33,16 +33,22 @@ export default Vue.extend({
   },
   computed: {
     date(): string {
-      return this.dateTime.toLocaleString(DateTime.DATE_HUGE);
+      return this.dateTime
+        .setZone(this.zoneName)
+        .toLocaleString(DateTime.DATE_HUGE);
     },
     location(): string {
-      return this.zoneName.replace(/^[a-zA-Z]*\//, '').replace(/_/, ' ');
+      return this.zoneName.replace(/\//, ' / ').replace(/_/, ' ');
     },
     time(): string {
       if (this.timeFormat === '12hr') {
-        return this.dateTime.toLocaleString(DateTime.TIME_WITH_SECONDS);
+        return this.dateTime
+          .setZone(this.zoneName)
+          .toLocaleString(DateTime.TIME_WITH_SECONDS);
       } else {
-        return this.dateTime.toLocaleString(DateTime.TIME_24_WITH_SECONDS);
+        return this.dateTime
+          .setZone(this.zoneName)
+          .toLocaleString(DateTime.TIME_24_WITH_SECONDS);
       }
     },
   },
