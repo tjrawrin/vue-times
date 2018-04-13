@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { DateTime } from 'luxon';
+import moment from 'moment-timezone';
 
 import PleaseWait from './PleaseWait.vue';
 
@@ -21,34 +21,28 @@ export default Vue.extend({
   },
   name: 'time-card',
   props: {
-    dateTime: DateTime,
+    dateTime: Object,
     timeFormat: {
       default: '12hr',
       type: String,
     },
     zoneName: {
-      default: DateTime.local().zoneName,
+      required: true,
       type: String,
     },
   },
   computed: {
     date(): string {
-      return this.dateTime
-        .setZone(this.zoneName)
-        .toLocaleString(DateTime.DATE_HUGE);
+      return this.dateTime.format('dddd, MMMM Do YYYY');
     },
     location(): string {
       return this.zoneName.replace(/\//, ' / ').replace(/_/, ' ');
     },
     time(): string {
       if (this.timeFormat === '12hr') {
-        return this.dateTime
-          .setZone(this.zoneName)
-          .toLocaleString(DateTime.TIME_WITH_SECONDS);
+        return this.dateTime.format('hh:mm:ss A');
       } else {
-        return this.dateTime
-          .setZone(this.zoneName)
-          .toLocaleString(DateTime.TIME_24_WITH_SECONDS);
+        return this.dateTime.format('HH:mm:ss');
       }
     },
   },

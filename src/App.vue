@@ -1,15 +1,16 @@
 <template>
   <div id="app">
     <time-format :timeFormat="timeFormat" @update="updateTimeFormat"></time-format>
-    <time-card :dateTime="dateTime" :timeFormat="timeFormat"></time-card>
-    <time-card :dateTime="dateTime" :timeFormat="timeFormat" :zoneName="zoneName"></time-card>
+    <time-card :dateTime="dateTime" :timeFormat="timeFormat" :zoneName="localZoneName"></time-card>
+    <time-card :dateTime="dateTime" :timeFormat="timeFormat" :zoneName="otherZoneName"></time-card>
   </div>
 </template>
 
 <script lang="ts">
 import Worker from 'worker-loader!./worker';
+
 import Vue from 'vue';
-import { DateTime, Zone } from 'luxon';
+import moment from 'moment-timezone';
 
 import TimeCard from './components/TimeCard.vue';
 import TimeFormat from './components/TimeFormat.vue';
@@ -24,14 +25,15 @@ export default Vue.extend({
     return {
       dateTime: null as any,
       timeFormat: '12hr',
-      zoneName: DateTime.local().setZone('Brazil/West').zoneName,
+      localZoneName: moment.tz.guess(),
+      otherZoneName: moment.tz.guess(),
     };
   },
   mounted() {
     const worker = new Worker();
     worker.postMessage('start');
     worker.onmessage = (event: any) => {
-      this.dateTime = DateTime.fromMillis(event.data.time);
+      this.dateTime = moment(event.data.time);
     };
   },
   methods: {
