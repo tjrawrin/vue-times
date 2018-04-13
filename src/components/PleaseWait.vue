@@ -27,10 +27,10 @@ export default Vue.extend({
 }
 .PleaseWait-spinner {
   animation: load 1s infinite linear;
-  border-bottom: 1rem solid #ffffff30;
-  border-left: 1rem solid #ffffff30;
-  border-right: 1rem solid #ffffff;
-  border-top: 1rem solid #ffffff30;
+  border-bottom: 1rem solid #00000020;
+  border-left: 1rem solid #00000020;
+  border-right: 1rem solid #00c9f995;
+  border-top: 1rem solid #00000020;
   overflow: hidden;
   text-indent: -9999em;
   transform: translateZ(0);
