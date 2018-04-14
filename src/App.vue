@@ -4,9 +4,6 @@
     <time-card :dt="localDateTime" :tf="timeFormat" :zn="localZoneName"></time-card>
     <time-zone-search @update="updateOtherZone"></time-zone-search>
     <time-card :dt="otherDateTime" :tf="timeFormat" :zn="otherZoneName"></time-card>
-    <div class="Footer">
-      Disclaimer! Not all cities and/or zone names in the world are included in the search. Results may vary.
-    </div>
   </div>
 </template>
 
@@ -83,12 +80,5 @@ body {
   max-width: 700px;
   padding: 0 1.2rem;
   width: 100%;
-}
-.Footer {
-  border-top: 1px dotted #00000065;
-  font-size: 1.2rem;
-  margin: 2.4rem 0;
-  padding: 0.8rem 0;
-  text-align: center;
 }
 </style>
