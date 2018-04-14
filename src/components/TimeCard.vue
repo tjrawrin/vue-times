@@ -21,28 +21,25 @@ export default Vue.extend({
   },
   name: 'time-card',
   props: {
-    dt: Object,
+    dt: String,
     tf: {
       default: '12hr',
       type: String,
     },
-    zn: {
-      required: true,
-      type: String,
-    },
+    zn: String,
   },
   computed: {
     date(): string {
-      return this.dt.format('dddd, MMMM Do YYYY');
+      return moment.tz(this.dt, this.zn).format('dddd, MMMM Do YYYY');
     },
     location(): string {
       return this.zn.replace(/\//g, ' / ').replace(/_/g, ' ');
     },
     time(): string {
       if (this.tf === '12hr') {
-        return this.dt.format('hh:mm:ss A');
+        return moment.tz(this.dt, this.zn).format('hh:mm:ss A');
       } else {
-        return this.dt.format('HH:mm:ss');
+        return moment.tz(this.dt, this.zn).format('HH:mm:ss');
       }
     },
   },

@@ -77,8 +77,8 @@ export default Vue.extend({
     updateValue(value: string) {
       if (this.open === false) {
         this.open = true;
-        this.currentIndex = 0;
       }
+      this.currentIndex = 0;
       this.value = value;
     },
   },
@@ -103,7 +103,7 @@ export default Vue.extend({
   box-shadow: 0 1px 3px #00000025;
   color: #333333;
   font-size: 1.6rem;
-  margin-bottom: 0.2rem;
+  line-height: 1.75;
   outline: 0;
   padding: 0.8rem;
   width: 100%;
@@ -113,7 +113,7 @@ export default Vue.extend({
   border: 1px solid #00000065;
   border-radius: 0.5rem;
   box-shadow: 0 1px 3px #00000025;
-  margin: 0;
+  margin: 0.2rem 0 0 0;
   max-height: 12.8rem;
   overflow: hidden;
   padding: 0.8rem;

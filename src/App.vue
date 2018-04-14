@@ -3,7 +3,8 @@
     <time-format :tf="timeFormat" @update="updateTimeFormat"></time-format>
     <time-card :dt="localDateTime" :tf="timeFormat" :zn="localZoneName"></time-card>
     <time-zone-search @update="updateOtherZone"></time-zone-search>
-    <time-card :dt="otherDateTime" :tf="timeFormat" :zn="otherZoneName"></time-card>
+    <time-card :dt="otherDateTime" :tf="timeFormat" :zn="otherZoneName" v-if="otherZoneName"></time-card>
+    <time-difference :diff="timeDifference" v-if="otherDateTime"></time-difference>
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import moment from 'moment-timezone';
 import TimeCard from './components/TimeCard.vue';
 import TimeFormat from './components/TimeFormat.vue';
 import TimeZoneSearch from './components/TimeZoneSearch.vue';
+import TimeDifference from './components/TimeDifference.vue';
 
 export default Vue.extend({
   name: 'app',
@@ -23,13 +25,14 @@ export default Vue.extend({
     TimeCard,
     TimeFormat,
     TimeZoneSearch,
+    TimeDifference,
   },
   data() {
     return {
       localDateTime: null as any,
       localZoneName: moment.tz.guess(),
       otherDateTime: null as any,
-      otherZoneName: moment.tz.guess(),
+      otherZoneName: null as any,
       timeFormat: '12hr',
     };
   },
@@ -37,16 +40,34 @@ export default Vue.extend({
     const worker = new Worker();
     worker.postMessage('start');
     worker.onmessage = (event: any) => {
-      this.localDateTime = moment.tz(event.data.time, this.localZoneName);
-      this.otherDateTime = moment.tz(event.data.time, this.otherZoneName);
+      this.localDateTime = moment(event.data.time)
+        .tz(this.localZoneName)
+        .format();
+      if (this.otherZoneName) {
+        this.otherDateTime = moment(event.data.time)
+          .tz(this.otherZoneName)
+          .format();
+      }
     };
+  },
+  computed: {
+    timeDifference(): any {
+      if (this.otherDateTime) {
+        const localOffset: number = moment.tz(this.localZoneName).utcOffset();
+        const otherOffset: number = moment.tz(this.otherZoneName).utcOffset();
+        return (otherOffset - localOffset) / 60;
+      }
+      return null;
+    },
   },
   methods: {
     updateTimeFormat(newTimeFormat: string) {
       this.timeFormat = newTimeFormat;
     },
     updateOtherZone(newZoneName: string) {
-      this.otherZoneName = newZoneName;
+      if (newZoneName) {
+        this.otherZoneName = newZoneName;
+      }
     },
   },
 });
