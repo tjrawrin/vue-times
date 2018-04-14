@@ -2,6 +2,7 @@
   <div id="app">
     <time-format :timeFormat="timeFormat" @update="updateTimeFormat"></time-format>
     <time-card :dateTime="dateTime" :timeFormat="timeFormat" :zoneName="localZoneName"></time-card>
+    <time-zone-search @update="updateOtherZone"></time-zone-search>
     <time-card :dateTime="dateTime" :timeFormat="timeFormat" :zoneName="otherZoneName"></time-card>
   </div>
 </template>
@@ -14,12 +15,14 @@ import moment from 'moment-timezone';
 
 import TimeCard from './components/TimeCard.vue';
 import TimeFormat from './components/TimeFormat.vue';
+import TimeZoneSearch from './components/TimeZoneSearch.vue';
 
 export default Vue.extend({
   name: 'app',
   components: {
     TimeCard,
     TimeFormat,
+    TimeZoneSearch,
   },
   data() {
     return {
@@ -39,6 +42,9 @@ export default Vue.extend({
   methods: {
     updateTimeFormat(newTimeFormat: string) {
       this.timeFormat = newTimeFormat;
+    },
+    updateOtherZone(newZoneName: string) {
+      this.otherZoneName = newZoneName;
     },
   },
 });

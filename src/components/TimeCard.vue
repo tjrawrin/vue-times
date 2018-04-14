@@ -59,7 +59,7 @@ export default Vue.extend({
   flex-direction: column;
   justify-content: space-around;
   margin: 1.2rem 0;
-  min-height: 12.7rem;
+  min-height: 12.8rem;
   padding: 0.8rem;
 }
 .TimeCard-location {
