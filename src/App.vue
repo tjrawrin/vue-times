@@ -1,9 +1,12 @@
 <template>
   <div id="app">
-    <time-format :timeFormat="timeFormat" @update="updateTimeFormat"></time-format>
-    <time-card :dateTime="dateTime" :timeFormat="timeFormat" :zoneName="localZoneName"></time-card>
+    <time-format :tf="timeFormat" @update="updateTimeFormat"></time-format>
+    <time-card :dt="localDateTime" :tf="timeFormat" :zn="localZoneName"></time-card>
     <time-zone-search @update="updateOtherZone"></time-zone-search>
-    <time-card :dateTime="dateTime" :timeFormat="timeFormat" :zoneName="otherZoneName"></time-card>
+    <time-card :dt="otherDateTime" :tf="timeFormat" :zn="otherZoneName"></time-card>
+    <div class="Footer">
+      Disclaimer! Not all cities and/or zone names in the world are included in the search. Results may vary.
+    </div>
   </div>
 </template>
 
@@ -26,17 +29,19 @@ export default Vue.extend({
   },
   data() {
     return {
-      dateTime: null as any,
-      timeFormat: '12hr',
+      localDateTime: null as any,
       localZoneName: moment.tz.guess(),
+      otherDateTime: null as any,
       otherZoneName: moment.tz.guess(),
+      timeFormat: '12hr',
     };
   },
   mounted() {
     const worker = new Worker();
     worker.postMessage('start');
     worker.onmessage = (event: any) => {
-      this.dateTime = moment(event.data.time);
+      this.localDateTime = moment.tz(event.data.time, this.localZoneName);
+      this.otherDateTime = moment.tz(event.data.time, this.otherZoneName);
     };
   },
   methods: {
@@ -78,5 +83,12 @@ body {
   max-width: 700px;
   padding: 0 1.2rem;
   width: 100%;
+}
+.Footer {
+  border-top: 1px dotted #00000065;
+  font-size: 1.2rem;
+  margin: 2.4rem 0;
+  padding: 0.8rem 0;
+  text-align: center;
 }
 </style>

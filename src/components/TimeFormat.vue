@@ -6,7 +6,7 @@
         type="radio" 
         name="format"
         id="12"
-        :checked="timeFormat === '12hr'"
+        :checked="tf === '12hr'"
         @change="updateFormat('12hr')">
       <label class="TimeFormat-label" for="12">12</label>
     </li>
@@ -17,7 +17,7 @@
         name="format"
         id="24"
         value="24hr"
-        :checked="timeFormat === '24hr'"
+        :checked="tf === '24hr'"
         @change="updateFormat('24hr')">
       <label class="TimeFormat-label" for="24">24</label>
     </li>
@@ -30,11 +30,11 @@ import Vue from 'vue';
 export default Vue.extend({
   name: 'time-format',
   props: {
-    timeFormat: String,
+    tf: String,
   },
   methods: {
-    updateFormat(timeFormat: string) {
-      this.$emit('update', timeFormat);
+    updateFormat(newTimeFormat: string) {
+      this.$emit('update', newTimeFormat);
     },
   },
 });
@@ -42,7 +42,7 @@ export default Vue.extend({
 
 <style scoped>
 .TimeFormat {
-  margin: 1.2rem 0;
+  margin: 2.4rem 0;
   padding: 0;
 }
 .TimeFormat-item {

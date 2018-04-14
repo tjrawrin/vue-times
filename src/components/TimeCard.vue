@@ -1,6 +1,6 @@
 <template>
   <div class="TimeCard">
-    <please-wait v-if="!this.dateTime"></please-wait>
+    <please-wait v-if="!this.dt"></please-wait>
     <template v-else>
       <div class="TimeCard-location">{{ location }}</div>
       <div class="TimeCard-date">{{ date }}</div>
@@ -21,28 +21,28 @@ export default Vue.extend({
   },
   name: 'time-card',
   props: {
-    dateTime: Object,
-    timeFormat: {
+    dt: Object,
+    tf: {
       default: '12hr',
       type: String,
     },
-    zoneName: {
+    zn: {
       required: true,
       type: String,
     },
   },
   computed: {
     date(): string {
-      return this.dateTime.format('dddd, MMMM Do YYYY');
+      return this.dt.format('dddd, MMMM Do YYYY');
     },
     location(): string {
-      return this.zoneName.replace(/\//, ' / ').replace(/_/, ' ');
+      return this.zn.replace(/\//g, ' / ').replace(/_/g, ' ');
     },
     time(): string {
-      if (this.timeFormat === '12hr') {
-        return this.dateTime.format('hh:mm:ss A');
+      if (this.tf === '12hr') {
+        return this.dt.format('hh:mm:ss A');
       } else {
-        return this.dateTime.format('HH:mm:ss');
+        return this.dt.format('HH:mm:ss');
       }
     },
   },
@@ -58,7 +58,7 @@ export default Vue.extend({
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin: 1.2rem 0;
+  margin: 2.4rem 0;
   min-height: 12.8rem;
   padding: 0.8rem;
 }

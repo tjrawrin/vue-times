@@ -87,6 +87,7 @@ export default Vue.extend({
 
 <style scoped>
 .TimeZoneSearch {
+  margin: 2.4rem 0;
   position: relative;
 }
 .TimeZoneSearch ul {
