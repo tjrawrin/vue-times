@@ -1,12 +1,14 @@
 <template>
-  <div class="TimeCard">
-    <please-wait v-if="!this.dt"></please-wait>
-    <template v-else>
-      <div class="TimeCard-location">{{ location }}</div>
-      <div class="TimeCard-date">{{ date }}</div>
-      <div class="TimeCard-time">{{ time }}</div>
-    </template>
-  </div>
+  <transition name="fade" appear>
+    <div class="TimeCard">
+      <please-wait v-if="!this.dt"></please-wait>
+      <template v-else>
+        <div class="TimeCard-location">{{ location }}</div>
+        <div class="TimeCard-date">{{ date }}</div>
+        <div class="TimeCard-time">{{ time }}</div>
+      </template>
+    </div>
+  </transition>
 </template>
 
 <script lang="ts">
@@ -67,5 +69,26 @@ export default Vue.extend({
 .TimeCard-time {
   text-align: center;
   width: 100%;
+}
+.fade-enter-active {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-name: fade;
+}
+.fade-leave-active {
+  animation-direction: reverse;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-name: fade;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -1rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 </style>
