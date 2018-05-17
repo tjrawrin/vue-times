@@ -74,7 +74,7 @@ export default Vue.extend({
 });
 </script>
 
-<style>
+<style lang="scss">
 *,
 *::before,
 *::after {
@@ -102,19 +102,20 @@ body {
   max-width: 700px;
   padding: 0 1.2rem;
   width: 100%;
-}
-.App-title {
-  color: #ffffff;
-  font-size: 4.8rem;
-  letter-spacing: 1rem;
-  line-height: 1;
-  margin: 2.4rem 0;
-  text-align: center;
-  text-shadow: 0 0.1rem 0 #cccccc, 0 0.2rem 0 #c9c9c9, 0 0.3rem 0 #bbbbbb,
-    0 0.4rem 0 #b9b9b9, 0 0.5rem 0 #aaaaaa, 0 0.6rem 0.1rem rgba(0, 0, 0, 0.1),
-    0 0 0.5rem rgba(0, 0, 0, 0.1), 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3),
-    0 0.3rem 0.5rem rgba(0, 0, 0, 0.2), 0 0.5rem 1rem rgba(0, 0, 0, 0.25),
-    0 1rem 1rem rgba(0, 0, 0, 0.2), 0 2rem 2rem rgba(0, 0, 0, 0.15);
-  text-transform: uppercase;
+
+  &-title {
+    color: #ffffff;
+    font-size: 4.8rem;
+    letter-spacing: 1rem;
+    line-height: 1;
+    margin: 2.4rem 0;
+    text-align: center;
+    text-shadow: 0 0.1rem 0 #cccccc, 0 0.2rem 0 #c9c9c9, 0 0.3rem 0 #bbbbbb,
+      0 0.4rem 0 #b9b9b9, 0 0.5rem 0 #aaaaaa, 0 0.6rem 0.1rem rgba(0, 0, 0, 0.1),
+      0 0 0.5rem rgba(0, 0, 0, 0.1), 0 0.1rem 0.3rem rgba(0, 0, 0, 0.3),
+      0 0.3rem 0.5rem rgba(0, 0, 0, 0.2), 0 0.5rem 1rem rgba(0, 0, 0, 0.25),
+      0 1rem 1rem rgba(0, 0, 0, 0.2), 0 2rem 2rem rgba(0, 0, 0, 0.15);
+    text-transform: uppercase;
+  }
 }
 </style>
