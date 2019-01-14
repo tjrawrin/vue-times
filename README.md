@@ -1,4 +1,4 @@
-# Times
+# Vue Times
 
 Find out what time it is.
 
