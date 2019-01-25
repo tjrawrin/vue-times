@@ -7,20 +7,23 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "moment": "^2.22.1",
-    "moment-timezone": "^0.5.17",
-    "register-service-worker": "^1.0.0",
-    "vue": "^2.5.16"
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.23",
+    "register-service-worker": "^1.5.2",
+    "vue": "^2.5.22",
+    "vue-class-component": "^6.0.0",
+    "vue-property-decorator": "^7.0.0"
   },
   "devDependencies": {
-    "@types/moment-timezone": "^0.5.4",
-    "@vue/cli-plugin-pwa": "^3.0.0-beta.10",
-    "@vue/cli-plugin-typescript": "^3.0.0-beta.10",
-    "@vue/cli-service": "^3.0.0-beta.10",
-    "node-sass": "^4.7.2",
-    "sass-loader": "^6.0.6",
-    "vue-template-compiler": "^2.5.13",
-    "worker-loader": "^1.1.1"
+    "@types/moment-timezone": "^0.5.10",
+    "@vue/cli-plugin-pwa": "^3.3.0",
+    "@vue/cli-plugin-typescript": "^3.3.0",
+    "@vue/cli-service": "^3.3.1",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "typescript": "^3.0.0",
+    "vue-template-compiler": "^2.5.22",
+    "worker-loader": "^2.0.0"
   },
   "postcss": {
     "plugins": {
