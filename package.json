@@ -8,21 +8,21 @@
   },
   "dependencies": {
     "moment": "^2.24.0",
-    "moment-timezone": "^0.5.23",
-    "register-service-worker": "^1.5.2",
-    "vue": "^2.5.22",
-    "vue-class-component": "^6.0.0",
-    "vue-property-decorator": "^7.0.0"
+    "moment-timezone": "^0.5.26",
+    "register-service-worker": "^1.6.2",
+    "vue": "^2.6.10",
+    "vue-class-component": "^7.1.0",
+    "vue-property-decorator": "^8.2.2"
   },
   "devDependencies": {
-    "@types/moment-timezone": "^0.5.10",
-    "@vue/cli-plugin-pwa": "^3.3.0",
-    "@vue/cli-plugin-typescript": "^3.3.0",
-    "@vue/cli-service": "^3.3.1",
-    "node-sass": "^4.11.0",
-    "sass-loader": "^7.1.0",
-    "typescript": "^3.0.0",
-    "vue-template-compiler": "^2.5.22",
+    "@types/moment-timezone": "^0.5.12",
+    "@vue/cli-plugin-pwa": "^3.11.0",
+    "@vue/cli-plugin-typescript": "^3.11.0",
+    "@vue/cli-service": "^3.11.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.0",
+    "typescript": "^3.6.3",
+    "vue-template-compiler": "^2.6.10",
     "worker-loader": "^2.0.0"
   },
   "postcss": {
