@@ -15,7 +15,7 @@
         class="TimeZoneSearch-item"
         :class="{'TimeZoneSearch-item--active': isActive(index)}"
         :key="suggestion"
-        @click="suggestionClick(index)"><span>{{ suggestion }}</span></li>
+        @click="suggestionClick(index)"><span>{{ formattedSuggestion(suggestion) }}</span></li>
     </ul>
   </div>
 </template>
@@ -44,7 +44,7 @@ export default Vue.extend({
         })
         .slice(0, 4);
     },
-    openSuggestion(): boolean {
+    openSuggestion(): boolean | string {
       return (
         this.value && this.value !== '' && this.matches && this.matches.length !== 0 && this.open === true
       );
@@ -81,6 +81,10 @@ export default Vue.extend({
       this.currentIndex = 0;
       this.value = value;
     },
+    formattedSuggestion(suggestion: string): string {
+      console.log
+      return suggestion.replace(/_/g, ' ');
+    }
   },
 });
 </script>
