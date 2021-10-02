@@ -46,7 +46,7 @@ export default Vue.extend({
     },
     openSuggestion(): boolean {
       return (
-        this.value !== '' && this.matches.length !== 0 && this.open === true
+        this.value && this.value !== '' && this.matches && this.matches.length !== 0 && this.open === true
       );
     },
   },
