@@ -16,10 +16,10 @@
   },
   "devDependencies": {
     "@types/moment-timezone": "^0.5.12",
-    "@vue/cli-plugin-pwa": "^3.11.0",
-    "@vue/cli-plugin-typescript": "^3.11.0",
+    "@vue/cli-plugin-pwa": "^5.0.8",
+    "@vue/cli-plugin-typescript": "^5.0.8",
     "@vue/cli-service": "^5.0.8",
-    "node-sass": "^7.0.0",
+    "node-sass": "^9.0.0",
     "sass-loader": "^8.0.0",
     "typescript": "^3.6.3",
     "vue-template-compiler": "^2.6.10",
