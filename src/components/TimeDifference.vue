@@ -5,7 +5,7 @@
         {{ diff }} hour{{ diff === 1 ? '' : 's' }} ahead of your current location.
       </template>
       <template v-if="diff < 0">
-        {{ Math.abs(diff) }} hour{{ diff === -1 ? '' : 's' }} behind of your current location.
+        {{ Math.abs(diff) }} hour{{ diff === -1 ? '' : 's' }} behind your current location.
       </template>
     </div>
   </transition>
