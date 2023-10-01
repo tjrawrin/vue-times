@@ -82,7 +82,6 @@ export default Vue.extend({
       this.value = value;
     },
     formattedSuggestion(suggestion: string): string {
-      console.log
       return suggestion.replace(/_/g, ' ');
     }
   },
