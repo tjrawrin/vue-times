@@ -1,12 +1,7 @@
 <template>
   <transition name="fade">
     <div class="TimeDifference">
-      <template v-if="diff >= 0">
-        {{ diff }} hour{{ diff === 1 ? '' : 's' }} ahead of your current location.
-      </template>
-      <template v-if="diff < 0">
-        {{ Math.abs(diff) }} hour{{ diff === -1 ? '' : 's' }} behind of your current location.
-      </template>
+        {{ diffString }}
     </div>
   </transition>
 </template>
@@ -19,6 +14,11 @@ export default Vue.extend({
   props: {
     diff: Number,
   },
+  computed {
+    diffString(): string {
+        return `${diff} hour${Math.abs(diff) !== 1 ? 's' : ''} ${diff >= 0 ? 'ahead of' : 'behind'} your current location.`;
+    }
+  }
 });
 </script>
 
